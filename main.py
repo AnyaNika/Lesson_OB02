@@ -14,6 +14,24 @@ class User:
         self.__name = name
         self.__access_level = access_level
 
+    # 3.Инкапсуляция данных: Убедись, что атрибуты классов защищены от прямого доступа и модификации снаружи. Предоставь
+    # доступ к необходимым атрибутам через методы (например, get и set методы).
+    
+    def get_id(self):
+        return self.__ID
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    def get_access_level(self):
+        return self.__access_level
+
+    def set_access_level(self, access_level):
+        self.__access_level = access_level
+
 # 2.Класс Admin: Этот класс должен наследоваться от класса User. Добавь дополнительный атрибут уровня доступа,
 # специфичный для администраторов ('admin').
 
@@ -28,16 +46,23 @@ class Admin(User):
 
         if isinstance(user, User):
             self.users.append(user)
-            print(f"Сотрудник {user.name} добавлен в список")
+            print(f"Сотрудник {user.get_name()} добавлен в список")
         else:
             print("Ошибка: добавляемый объект не является сотрудником")
 
     def remove_user(self, user):
         if user in self.users:
             self.users.remove(user)
-            print(f"Сотрудник {user.name} удален из списка")
+            print(f"Сотрудник {user.get_name()} удален из списка")
         else:
-            print(f"Сотрудник {user.name} не найден в списке")
+            print(f"Сотрудник {user.get_name()} не найден в списке")
 
-# 3.Инкапсуляция данных: Убедись, что атрибуты классов защищены от прямого доступа и модификации снаружи. Предоставь
-# доступ к необходимым атрибутам через методы (например, get и set методы).
+# Пример использования:
+admin = Admin(1, "Леша")
+user1 = User(2, "Петя")
+user2 = User(3, "Таня")
+
+admin.add_user(user1)
+admin.add_user(user2)
+admin.remove_user(user1)
+
